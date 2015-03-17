@@ -1,0 +1,79 @@
+<html>
+
+<head>
+
+  <title>Clocky</title>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script>
+  var os = require('os');
+  var moment = require('moment');
+  var now = moment();
+  var clockydata = {};
+  </script>
+</head>
+
+<body class="teal lighten-2 white-text">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab teal lighten-2 white-text col s3"><a class="active" href="#test1">Clock</a></li>
+          <li class="tab teal lighten-2 white-text col s3"><a href="#test2">Noise</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div id="test1">
+        <div class="col s3 offset-s1">
+            <h1 class="center-align" id="clocky-hr">
+            </h1>
+        </div>
+        <div class="col s3">
+            <h1 class="center-align" id="clocky-mn">
+            </h1>
+        </div>
+        <div class="col s3">
+            <h1 class="center-align" id="clocky-sc">
+            </h1>
+        </div>
+
+      </div>
+      <div id="test2" class="col s12">
+        <span class="center-align">Noise</span>
+      </div>
+    </div>
+  </div>
+
+        <div class="progress">
+            <div id="pbar" class="determinate" style="width: 0%"></div>
+        </div>
+
+</body>
+
+<script>
+  var clockyHr = document.getElementById('clocky-hr');
+  var clockyMn = document.getElementById('clocky-mn');
+  var clockySc = document.getElementById('clocky-sc');
+  var pbar = document.getElementById('pbar');
+  setInterval(function () {
+    now = moment();
+    clockydata.LTS = now.format("LTS");
+    clockydata.hours = now.hours();
+    clockydata.minutes = now.minutes();
+    clockydata.seconds = now.seconds();
+    clockyHr.innerHTML = now.format("hh");
+    clockyMn.innerHTML = now.format("mm");
+    clockySc.innerHTML = now.format("ss");
+    clockydata.total = clockydata.minutes * 60 + clockydata.seconds;
+    pbar.setAttribute("style", "width: " + clockydata.total/36 + "%");
+  }, 1 * 10);
+
+</script>
+
+</html>

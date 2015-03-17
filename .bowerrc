@@ -1,0 +1,4 @@
+{
+    "proxy":"http://order.itb.ac.id:8080",
+    "https-proxy":"http://order.itb.ac.id:8080"
+}
