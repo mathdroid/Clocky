@@ -30,7 +30,7 @@
   <div class="container">
     <div class="row">
       <div id="test1">
-        <div class="col s3 offset-s1">
+        <div class="col s3">
             <h1 class="center-align" id="clocky-hr">
             </h1>
         </div>
@@ -43,16 +43,55 @@
             </h1>
         </div>
 
+        <div class="col s3">
+            <h1 class="center-align" id="clocky-ap">
+            </h1>
+        </div>
       </div>
       <div id="test2" class="col s12">
-        <span class="center-align">Noise</span>
+        <div class="row">
+          <div class="col s4">
+            <span class="center-align">Noise</span>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="no1" min="0" max="100" />
+              </p>
+            </form>
+          </div>
+          <div class="col s4">
+            <span class="center-align">Noise2</span>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="no2" min="0" max="100" />
+              </p>
+            </form>
+          </div>
+          <div class="col s4">
+            <span class="center-align">Noise3</span>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="no3" min="0" max="100" />
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <form action="#">
+          <div class="file-field input-field">
+            <input class="file-path validate" type="text"/>
+            <div class="btn btn-sm">
+              <span>File</span>
+              <input type="file" />
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
-        <div class="progress">
-            <div id="pbar" class="determinate" style="width: 0%"></div>
-        </div>
+  <div class="progress">
+      <div id="pbar" class="determinate" style="width: 0%"></div>
+  </div>
 
 </body>
 
@@ -60,6 +99,7 @@
   var clockyHr = document.getElementById('clocky-hr');
   var clockyMn = document.getElementById('clocky-mn');
   var clockySc = document.getElementById('clocky-sc');
+  var clockyAp = document.getElementById('clocky-ap');
   var pbar = document.getElementById('pbar');
   setInterval(function () {
     now = moment();
@@ -70,6 +110,7 @@
     clockyHr.innerHTML = now.format("hh");
     clockyMn.innerHTML = now.format("mm");
     clockySc.innerHTML = now.format("ss");
+    clockyAp.innerHTML = clockydata.LTS[clockydata.LTS.length-2];
     clockydata.total = clockydata.minutes * 60 + clockydata.seconds;
     pbar.setAttribute("style", "width: " + clockydata.total/36 + "%");
   }, 1 * 10);
